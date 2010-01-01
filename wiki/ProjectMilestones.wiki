@@ -1,5 +1,5 @@
 #summary Where am I going with this.
 
-  * Work out how file transfer works
-  * Work out how weight data in file is held
+  * Work out how weight data is held on the usb stick
   * Write Application to import data into!
+  * Make cup of tea!
