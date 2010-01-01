@@ -27,7 +27,8 @@ Body Water 	57.1 - Calulated field not from scales.<br>
 
 Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
 
-|| table || cells ||
+|| Hex Value|| Decimal Value || Comment ||
+||  || ||  ||
 
 Hex	Dec
 
