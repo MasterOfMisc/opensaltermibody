@@ -32,19 +32,19 @@ Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
 ||07||	7 ||	YEAR in binary - 0111<br>||
 ||da ||	218 ||	YEAR in binary - 11011010<br>||
 ||01 ||	1 ||	MONTH<br>||
-||01 ||	1 ||	DAY<br>
-||08 ||	8 ||	TIME<br>
-||31 ||	49 ||	TIME<br>
-||2c ||	44 ||	TIME<br>
-||a1 ||	161 ||    Female/Male Setting & Age. 1st bit = male/female. If 0 then female, if 1 then male. Can only live upto 127<br>
-||b9 ||	185 ||	Height in cm <br>
-||00 ||	0 ||	PADDING! - It seems like!<br>
-||03 ||	3 ||	WEIGHT The MSB is not used.<br>
-||5a ||	90  ||    WEIGHT <br>
-||00 ||	0 ||	BODY FAT<br>
-||dc ||	220 ||	BODY FAT<br>
-||00 ||	0 ||	PADDING! - It seems like!<br>
-||01 ||	1 ||	Muscle Mass<br>
-||9d ||	157 ||	Muscle Mass<br>
-||09 ||	9 ||	Visceral Fat<br>
+||01 ||	1 ||	DAY<br>||
+||08 ||	8 ||	TIME<br>||
+||31 ||	49 ||	TIME<br>||
+||2c ||	44 ||	TIME<br>||
+||a1 ||	161 ||    Female/Male Setting & Age. 1st bit = male/female. If 0 then female, if 1 then male. Can only live upto 127<br>||
+||b9 ||	185 ||	Height in cm <br>||
+||00 ||	0 ||	PADDING! - It seems like!<br>||
+||03 ||	3 ||	WEIGHT The MSB is not used.<br>||
+||5a ||	90  ||    WEIGHT <br>||
+||00 ||	0 ||	BODY FAT<br>||
+||dc ||	220 ||	BODY FAT<br>||
+||00 ||	0 ||	PADDING! - It seems like!<br>||
+||01 ||	1 ||	Muscle Mass<br>||
+||9d ||	157 ||	Muscle Mass<br>||
+||09 ||	9 ||	Visceral Fat<br>||
 || || || ||
