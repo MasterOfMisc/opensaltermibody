@@ -3,12 +3,14 @@
 
 Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in! - Im using a hex editor to read the stored data in the file.
 
+Interestingly the application wipes the contents of this file once it has read the data in!
+
 Makeup of the file:
 
 * Each users weight data takes up 18 bytes.<br>
 * Each user has 35 slots that they can take up.  The file is padded with empty slots.<br>>
 
-Example Data to be read from file:
+Example Data to be read from file
 
 Slot 		1 (done)<br>
 Time/Date 	08:49:44 (done)<br>
