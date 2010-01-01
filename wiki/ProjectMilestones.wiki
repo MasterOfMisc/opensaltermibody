@@ -1,6 +1,6 @@
 #summary Where am I going with this.
 
-  * Work out how weight data is held on the usb stick [done!]
+  * Work out how weight data is held on the usb stick (done)
   * Download & Install Microsoft Visual Studio Express 2008
   * Write Application to import data into!
   * Make cup of tea!
