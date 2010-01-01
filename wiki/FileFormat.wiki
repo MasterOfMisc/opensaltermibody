@@ -11,8 +11,8 @@ Makeup of the file:
 
 Example Data to be read from file:
 
-Slot 		1 (done)</br>
-Time/Date 	08:49:44 (done)</br>
+Slot 		1 (done)<br>
+Time/Date 	08:49:44 (done)<br>
 Age		33 (done)
 Height		6'01" / 185cm (done)
 Weight		13:7.2 / 85.8kg / 189.2 (done)
