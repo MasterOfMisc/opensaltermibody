@@ -29,9 +29,9 @@ Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
 
 || Hex Value|| Decimal Value || Comment ||
 ||  || ||  ||
-||07||	7 ||	YEAR in binary - 0111<br>
-||da ||	218 ||	YEAR in binary - 11011010<br>
-||01 ||	1 ||	MONTH<br>
+||07||	7 ||	YEAR in binary - 0111<br>||
+||da ||	218 ||	YEAR in binary - 11011010<br>||
+||01 ||	1 ||	MONTH<br>||
 ||01 ||	1 ||	DAY<br>
 ||08 ||	8 ||	TIME<br>
 ||31 ||	49 ||	TIME<br>
