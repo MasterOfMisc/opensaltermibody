@@ -1,13 +1,12 @@
 #summary File Format!
 
 
-Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in! - Im using a hex editor to read the stored data in the file. Why it couldnt it be a nice comma seperated file!!
+Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in! - Im using a hex editor to read the stored data in the file.
 
 Makeup of the file:
 
 * Each users weight data takes up 18 bytes.<br>
-* Each user has 35 slots that they can take up.<br>
-* The file is padded with empty slots.<br>
+* Each user has 35 slots that they can take up.  The file is padded with empty slots.<br>>
 
 Example Data to be read from file:
 
@@ -27,6 +26,8 @@ Body Water 	57.1 - Calulated field not from scales.<br>
 --------------------------------------------------------------------
 
 Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
+
+|| table || cells ||
 
 Hex	Dec
 
