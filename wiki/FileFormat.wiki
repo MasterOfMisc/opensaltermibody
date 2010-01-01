@@ -1,7 +1,7 @@
 #summary File Format!
 
 
-Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in!
+Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in! - Im using a hex editor to read the stored data in the file. Why it couldnt it be a nice comma seperated file!!
 
 Makeup of the file:
 
