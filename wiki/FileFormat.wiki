@@ -1,1 +1,50 @@
 #summary File Format!
+
+
+Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This is the file that needs to be read in!
+
+Makeup of the file:
+
+* Each users weight data takes up 18 bytes.
+* Each user has 35 slots that they can take up.
+* The file is padded with empty slots.
+
+Example Data to be read from file:
+
+Slot 		1 (done)
+Time/Date 	08:49:44 (done)
+Age		33 (done)
+Height		6'01" / 185cm (done)
+Weight		13:7.2 / 85.8kg / 189.2 (done)
+Body Fat	22.0 (done)
+Visceral Fat	9 (done)
+BMI		25.1 - (done) Calculated field off ( http://www.bbc.co.uk/health/healthy_living/your_weight/bmiimperial_index.shtml )
+BMR		1949 - (done) Calculated off weight, height & age. (http://www.bmi-calculator.net/bmr-calculator/bmr-formula.php)
+Muscle Mass	41.3
+Body Water 	57.1 - Calulated field not from scales.
+
+
+--------------------------------------------------------------------
+
+Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
+
+Hex	Dec
+
+07	7 	YEAR in binary - 0111
+da 	218	YEAR in binary - 11011010
+01 	1	MONTH
+01 	1	DAY
+08 	8	TIME
+31 	49	TIME
+2c 	44	TIME
+a1 	161     Female/Male Setting & Age. 1st bit = male/female. If 0 then female, if 1 then male. Can only live upto 127
+b9 	185	Height in cm 
+00 	0	PADDING! - It seems like!
+03 	3	WEIGHT The MSB is not used.
+5a 	90      WEIGHT 
+00 	0	BODY FAT
+dc 	220	BODY FAT
+00 	0	PADDING! - It seems like!
+01 	1	Muscle Mass
+9d 	157	Muscle Mass
+09	9	Visceral Fat
