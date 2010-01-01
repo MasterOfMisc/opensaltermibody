@@ -5,9 +5,9 @@ Okay... Firstly the file created by the USB export is named BODYDATA.TXT. This i
 
 Makeup of the file:
 
-* Each users weight data takes up 18 bytes.
-* Each user has 35 slots that they can take up.
-* The file is padded with empty slots.
+* Each users weight data takes up 18 bytes.<br>
+* Each user has 35 slots that they can take up.<br>
+* The file is padded with empty slots.<br>
 
 Example Data to be read from file:
 
