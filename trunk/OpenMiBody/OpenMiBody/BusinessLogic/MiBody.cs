@@ -53,12 +53,14 @@ namespace OpenMiBody.BusinessLogic
 
         public double CalculateBMI(MiBodyData bd)
         {
-            double tmp = bd._heightInCM * bd._heightInCM;
+            // convert height from cm to metres
+            double heightInMetres = bd._heightInCM * 0.01;
 
-            // convert centimetres to metres
-            tmp = tmp * 0.01;
+            double tmp = heightInMetres * heightInMetres;
 
             double bmi = bd._weightInKG / tmp;
+
+            bmi = Math.Round(bmi, 1);
             return bmi;
 
 //            1.6 x 1.6 = 2.56. BMI would be 65 divided by 2.56 = 25.39. 
