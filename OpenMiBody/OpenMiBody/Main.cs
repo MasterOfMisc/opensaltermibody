@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using OpenMiBody.BusinessLogic;
+using OpenMiBody.Forms;
 
 namespace OpenMiBody
 {
@@ -116,6 +117,17 @@ namespace OpenMiBody
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             MessageBox.Show("todo");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            WelcomeForm dlg = new WelcomeForm();
+            dlg.ShowDialog();
         }
     }
 }
