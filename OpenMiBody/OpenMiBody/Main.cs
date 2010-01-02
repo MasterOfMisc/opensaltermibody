@@ -98,7 +98,7 @@ namespace OpenMiBody
                     if (bd._valid == false)
                         continue;
 
-                    dataGridView1.Rows.Insert(0, bd._dateTime, bd._age, bd._heightInCM, bd._weightInKG, bd._bodyFat, bd._visceralFat, bd._bmi, bd._bmr, bd._muscleMass, bd._bodyWater);
+                    dataGridView1.Rows.Insert(0, bd._userSlot, bd._dateTime, bd._age, bd._heightInCM, bd._weightInKG, bd._bodyFat, bd._visceralFat, bd._bmi, bd._bmr, bd._muscleMass, bd._bodyWater);
                 }
             }
         }
@@ -109,6 +109,11 @@ namespace OpenMiBody
         }
 
         private void buttonGraph_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("todo");
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
         {
             MessageBox.Show("todo");
         }

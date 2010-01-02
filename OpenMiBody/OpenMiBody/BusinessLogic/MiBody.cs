@@ -19,12 +19,19 @@ namespace OpenMiBody.BusinessLogic
 
         public int _age;
         public int _heightInCM = 0;
+
+        public string _weightInKGStr = "";
         public double _weightInKG = 0;
+
+        public string _bodyFatStr = "";
         public double _bodyFat = 0;
+
+        public string _muscleMassStr = "";
+        public double _muscleMass = 0;
+
         public int _visceralFat = 0;
         public double _bmi = 0;
         public double _bmr = 0;
-        public double _muscleMass = 0;
         public double _bodyWater = 0;
     }
 
@@ -92,20 +99,29 @@ namespace OpenMiBody.BusinessLogic
                     // Step 08: Get weight
                     int tmp1 = bodyData._rawData[10];
                     int tmp2 = bodyData._rawData[11];
-                    bodyData._weightInKG = tmp1 << 8;
-                    bodyData._weightInKG += tmp2;
+                    int result = tmp1 << 8;
+                    result += tmp2;
+                    bodyData._weightInKGStr = result.ToString();
+                    bodyData._weightInKGStr = bodyData._weightInKGStr.Insert(bodyData._weightInKGStr.Length - 1, ".");
+                    bodyData._weightInKG = Convert.ToDouble(bodyData._weightInKGStr);
 
                     // Step 9: Get body fat
                     tmp1 = bodyData._rawData[12];
                     tmp2 = bodyData._rawData[13];
-                    bodyData._bodyFat = tmp1 << 8;
-                    bodyData._bodyFat += tmp2;
+                    result = tmp1 << 8;
+                    result += tmp2;
+                    bodyData._bodyFatStr = result.ToString();
+                    bodyData._bodyFatStr = bodyData._bodyFatStr.Insert(bodyData._bodyFatStr.Length - 1, ".");
+                    bodyData._bodyFat = Convert.ToDouble(bodyData._bodyFatStr);
 
                     // Step 10: Get Muscle Mass
                     tmp1 = bodyData._rawData[15];
                     tmp2 = bodyData._rawData[16];
-                    bodyData._muscleMass = tmp1 << 8;
-                    bodyData._muscleMass += tmp2;
+                    result = tmp1 << 8;
+                    result += tmp2;
+                    bodyData._muscleMassStr = result.ToString();
+                    bodyData._muscleMassStr = bodyData._muscleMassStr.Insert(bodyData._muscleMassStr.Length - 1, ".");
+                    bodyData._muscleMass = Convert.ToDouble(bodyData._muscleMassStr);
 
                     // Step 11: Get Visceral Fat
                     bodyData._visceralFat = bodyData._rawData[17];
