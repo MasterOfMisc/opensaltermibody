@@ -63,6 +63,7 @@ namespace OpenMiBody
             for (int nUserCount = 0; nUserCount < nNumUsers; nUserCount++)
             {
                 MiBodyUser user = new MiBodyUser();
+                user._userSlot = nUserCount + 1;
 
                 int nNumSlotsPerUser = 35;
                 for (int nSlotCount = 0; nSlotCount < nNumSlotsPerUser; nSlotCount++)
@@ -82,6 +83,8 @@ namespace OpenMiBody
             }
 
             MessageBox.Show("Finished Reading in file data!");
+
+            _miBodySystem.PopulateUserData();
         }
     }
 }
