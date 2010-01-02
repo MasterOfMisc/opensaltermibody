@@ -10,3 +10,10 @@ http://stackoverflow.com/questions/433729/free-c-grid-graph-component
 
  - Looks Cool!<br>
 http://www.brainyautomation.com/blog/post/Google-Chart-C-API.aspx<br>
+http://netcontrols.org/nplot/wiki/index.php?n=Main.Examples
+
+ - Microsoft offering!!
+
+http://www.microsoft.com/downloads/details.aspx?FamilyID=130f7986-bf49-4fe5-9ca8-910ae6ea442c&displaylang=en<br>
+
+http://code.msdn.microsoft.com/mschart<br>
