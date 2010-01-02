@@ -102,5 +102,15 @@ namespace OpenMiBody
                 }
             }
         }
+
+        private void buttonExportExcel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("todo");
+        }
+
+        private void buttonGraph_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("todo");
+        }
     }
 }
