@@ -84,7 +84,23 @@ namespace OpenMiBody
 
             MessageBox.Show("Finished Reading in file data!");
 
-            _miBodySystem.PopulateUserData();
+            _miBodySystem.FillInUserData();
+
+            PopulateGrid();
+        }
+
+        void PopulateGrid()
+        {
+            foreach (MiBodyUser user in _miBodySystem.miBodyUserList)
+            {
+                foreach (MiBodyData bd in user.miBodyDataList)
+                {
+                    if (bd._valid == false)
+                        continue;
+
+                    dataGridView1.Rows.Insert(0, bd._dateTime, bd._age, bd._heightInCM, bd._weightInKG, bd._bodyFat, bd._visceralFat, bd._bmi, bd._bmr, bd._muscleMass, bd._bodyWater);
+                }
+            }
         }
     }
 }
