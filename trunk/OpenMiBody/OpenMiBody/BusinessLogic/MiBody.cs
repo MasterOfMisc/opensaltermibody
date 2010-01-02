@@ -50,6 +50,40 @@ namespace OpenMiBody.BusinessLogic
     {
         public List<MiBodyUser> miBodyUserList = new List<MiBodyUser>();
 
+        public double CalculateBMI(MiBodyData bd)
+        {
+            double tmp = bd._heightInCM * bd._heightInCM;
+
+            // convert centimetres to metres
+            tmp = tmp * 0.01;
+
+            double bmi = bd._weightInKG / tmp;
+            return bmi;
+
+//            1.6 x 1.6 = 2.56. BMI would be 65 divided by 2.56 = 25.39. 
+            // calc taken from here: 
+            // http://www.bbc.co.uk/health/healthy_living/your_weight/bmiimperial_index.shtml
+        }
+
+        public double CalculateBMR(MiBodyData bd)
+        {
+            // calc taken from here: 
+            // http://www.bmi-calculator.net/bmr-calculator/bmr-formula.php
+
+            double BMR = 0;
+            if ( bd._gender == Gender.Female )
+            {
+                // Women: BMR = 655 + ( 9.6 x weight in kilos ) + ( 1.8 x height in cm ) - ( 4.7 x age in years )
+                BMR = 655 + ( 9.6 * bd._weightInKG ) + ( 1.8 * bd._heightInCM ) - ( 4.7 * bd._age );
+            }
+            else
+            {
+                // Men: BMR = 66 + ( 13.7 x weight in kilos ) + ( 5 x height in cm ) - ( 6.8 x age in years )
+                BMR = 66 + (13.7 * bd._weightInKG) + (5 * bd._heightInCM) - (6.8 * bd._age);
+            }
+
+            return BMR;
+        }
         public void FillInUserData()
         {
             foreach (MiBodyUser user in miBodyUserList)
@@ -125,6 +159,12 @@ namespace OpenMiBody.BusinessLogic
 
                     // Step 11: Get Visceral Fat
                     bodyData._visceralFat = bodyData._rawData[17];
+
+                    // Step 12: Calc BMR
+                    bodyData._bmr = CalculateBMR(bodyData);
+
+                    // Step 13: Calc BMI
+                    bodyData._bmi = CalculateBMI(bodyData);
                 }
             }
         }
