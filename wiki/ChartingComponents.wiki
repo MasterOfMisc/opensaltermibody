@@ -19,3 +19,5 @@ http://weblogs.asp.net/scottgu/archive/2008/11/24/new-asp-net-charting-control-l
 http://www.microsoft.com/downloads/details.aspx?FamilyID=130f7986-bf49-4fe5-9ca8-910ae6ea442c&displaylang=en<br>
 
 http://code.msdn.microsoft.com/mschart<br>
+
+Ive just had a quick scan of the Microsoft chart control and it looks very promising! - The demo is very impressive and of course fits in very nicely what with it being created for Winforms!
