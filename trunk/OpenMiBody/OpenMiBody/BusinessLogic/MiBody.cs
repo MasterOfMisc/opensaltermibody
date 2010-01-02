@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace OpenMiBody.BusinessLogic
 {
@@ -114,18 +115,23 @@ namespace OpenMiBody.BusinessLogic
                     bodyData._dateTime = new DateTime(year, month, day, hour, min, sec);
 
                     // Step 05: Get Gender
-                    int startbit = 8;
-                    int bitcount = 1;
-                    int gender = Utilities.GetBits(bodyData._rawData[7], startbit, bitcount);
-                    if (gender == 0)
+
+                    // convert rawData 7 to a bit array
+                    BitArray ageBits = new BitArray(BitConverter.GetBytes(bodyData._rawData[7]));
+
+                    // get bit 8 (zero index so is 7!)
+                    bool genderBit = ageBits.Get(7);
+
+                    if (genderBit == false)
                         bodyData._gender = Gender.Female;
                     else
                         bodyData._gender = Gender.Male;
 
+                    //  Set gender bit (8) to zero so we can get the age!
+                    ageBits.Set(7, false);
+
                     // Step 06: Get Age
-                    startbit = 7;
-                    bitcount = 7;
-                    bodyData._age = Utilities.GetBits(bodyData._rawData[7], startbit, bitcount);
+                    bodyData._age = Utilities.GetBitArrayValue(ageBits);
 
                     // Step 07: Get height
                     bodyData._heightInCM = bodyData._rawData[8];
@@ -172,6 +178,18 @@ namespace OpenMiBody.BusinessLogic
 
     public class Utilities
     {
+        public static byte GetBitArrayValue(BitArray bArray)
+        {
+            byte value = 0x00;
+
+            for (byte x = 0; x < bArray.Count; x++)
+            {
+                value |= (byte)((bArray[x] == true) ? (0x01 << x) : 0x00);
+            }
+
+            return value;
+        }
+
         public static byte LowByte(ushort word)
         {
             return (byte)word;
@@ -193,19 +211,5 @@ namespace OpenMiBody.BusinessLogic
 
             return result;
         }
-
-        //DateTime SecondsFromWords(int word1, int word2)
-        //{
-        //    //int word1 = 30868; // 0111100010010100 (16 bits)
-        //    //int word2 = 18887; // 0100100111000111 (16 bits)
-
-        //    // Step 01: Shift bits up 16 places
-
-        //    int result = word2 << 16;
-
-        //    result += word1;
-
-        //    return UnixDate.ConvertFromUnixTimestamp(result);
-        //}
     }
 }
