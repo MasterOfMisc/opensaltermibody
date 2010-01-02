@@ -7,8 +7,8 @@ Interestingly the application wipes the contents of this file once it has read t
 
 Makeup of the file:
 
-* Each users weight data takes up 18 bytes.<br>
-* Each user has 35 slots that they can take up.  The file is padded with empty slots.<br>>
+  * Each users weight data takes up 18 bytes.<br>
+  * Each user has 35 slots that they can take up.  The file is padded with empty slots.<br>>
 
 Example Data to be read from file
 
