@@ -14,6 +14,8 @@ http://netcontrols.org/nplot/wiki/index.php?n=Main.Examples
 
  - Microsoft offering!!
 
+http://weblogs.asp.net/scottgu/archive/2008/11/24/new-asp-net-charting-control-lt-asp-chart-runat-quot-server-quot-gt.aspx
+
 http://www.microsoft.com/downloads/details.aspx?FamilyID=130f7986-bf49-4fe5-9ca8-910ae6ea442c&displaylang=en<br>
 
 http://code.msdn.microsoft.com/mschart<br>
