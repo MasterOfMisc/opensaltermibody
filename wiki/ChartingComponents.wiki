@@ -1,0 +1,9 @@
+#summary One-sentence summary of this page.
+
+Possible candidates for inclusion in project:
+
+http://csharp-source.net/open-source/charting-and-reporting
+http://www.advsofteng.com/cdnet.html
+http://www.codeproject.com/KB/graphics/zedgraph.aspx
+http://www.c-sharpcorner.com/UploadFile/mgold/GraphicsComponent09142005054420AM/GraphicsComponent.aspx
+http://stackoverflow.com/questions/433729/free-c-grid-graph-component
