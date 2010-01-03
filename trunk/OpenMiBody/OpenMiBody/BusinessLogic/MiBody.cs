@@ -180,6 +180,19 @@ namespace OpenMiBody.BusinessLogic
 
     public class Utilities
     {
+        public static double ConvertWeightKGToPounds( double value )
+        {
+            return value * 2.20462262;
+        }
+
+        public static string ConvertWeightKGToStonePounds(double value)
+        {
+            // http://msdn.microsoft.com/en-us/library/yda5c8dx.aspx
+            int remainder;
+            //int quotient = Math.DivRem(Convert.ToInt32(value), 0.157473044, out remainder);
+
+            return "";
+        }
         public static byte GetBitArrayValue(BitArray bArray)
         {
             byte value = 0x00;
