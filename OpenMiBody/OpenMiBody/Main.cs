@@ -24,12 +24,10 @@ namespace OpenMiBody
         private void buttonReadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlgOpen = new OpenFileDialog();
-            if (dlgOpen.ShowDialog() == DialogResult.OK)
+            if (dlgOpen.ShowDialog() == DialogResult.Cancel)
             {
-                MessageBox.Show(dlgOpen.FileName);
+                return;
             }
-
-            // http://www.daniweb.com/forums/thread249014.html#
 
             List<byte> fileContents = new List<byte>();
             int pos = 0;
@@ -83,7 +81,7 @@ namespace OpenMiBody
                 _miBodySystem.miBodyUserList.Add(user);
             }
 
-            MessageBox.Show("Finished Reading in file data!");
+            MessageBox.Show("Successfully Finished Reading in file data!");
 
             _miBodySystem.FillInUserData();
 
@@ -99,9 +97,27 @@ namespace OpenMiBody
                     if (bd._valid == false)
                         continue;
 
-                    dataGridView1.Rows.Insert(0, bd._userSlot, bd._dateTime, bd._age, bd._heightInCM, bd._weightInKG, bd._bodyFat, bd._visceralFat, bd._bmi, bd._bmr, bd._muscleMass, bd._bodyWater);
+                    int nNewRow = dataGridView1.Rows.Add();
+
+                    dataGridView1.Rows[nNewRow].Tag = bd;
+                    dataGridView1.Rows[nNewRow].Cells[0].Value = bd._userSlot;
+                    dataGridView1.Rows[nNewRow].Cells[1].Value = bd._dateTime; 
+                    dataGridView1.Rows[nNewRow].Cells[2].Value = bd._age; 
+                    dataGridView1.Rows[nNewRow].Cells[3].Value = string.Format("{0} cm", bd._heightInCM); 
+                    dataGridView1.Rows[nNewRow].Cells[4].Value = string.Format("{0} Kg", bd._weightInKG); 
+                    dataGridView1.Rows[nNewRow].Cells[5].Value = string.Format("{0} %", bd._bodyFat); 
+                    dataGridView1.Rows[nNewRow].Cells[6].Value = bd._visceralFat; 
+                    dataGridView1.Rows[nNewRow].Cells[7].Value = bd._bmi; 
+                    dataGridView1.Rows[nNewRow].Cells[8].Value = bd._bmr; 
+                    dataGridView1.Rows[nNewRow].Cells[9].Value = string.Format("{0} %", bd._muscleMass); 
+                    dataGridView1.Rows[nNewRow].Cells[10].Value = string.Format("{0} %", bd._bodyWater);
+
+                    //dataGridView1.Rows.Insert(0, bd._userSlot, bd._dateTime, bd._age, bd._heightInCM, bd._weightInKG, bd._bodyFat, bd._visceralFat, bd._bmi, bd._bmr, bd._muscleMass, bd._bodyWater);
                 }
             }
+
+            dataGridView1.AutoResizeColumns();
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void buttonExportExcel_Click(object sender, EventArgs e)
@@ -121,13 +137,69 @@ namespace OpenMiBody
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            SetupDataGridView(ref dataGridView1);
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
             WelcomeForm dlg = new WelcomeForm();
             dlg.ShowDialog();
+        }
+
+        public void SetupDataGridView(ref DataGridView dgv)
+        {
+            dgv.RowHeadersVisible = false;
+
+            // Setting the style of the DataGridView control
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 9, FontStyle.Bold, GraphicsUnit.Point);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.DefaultCellStyle.Font = new Font("Tahoma", 8, FontStyle.Regular, GraphicsUnit.Point);
+            dgv.DefaultCellStyle.BackColor = Color.Empty;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dgv.AllowUserToAddRows = false;
+        }
+
+        private void comboBoxUserSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxUserSelect.Text == "User 01")
+                HideShowRows(1);
+            if (comboBoxUserSelect.Text == "User 02")
+                HideShowRows(2);
+            if (comboBoxUserSelect.Text == "User 03")
+                HideShowRows(3);
+            if (comboBoxUserSelect.Text == "User 04")
+                HideShowRows(4);
+            if (comboBoxUserSelect.Text == "User 05")
+                HideShowRows(5);
+            if (comboBoxUserSelect.Text == "User 06")
+                HideShowRows(6); 
+            if (comboBoxUserSelect.Text == "User 07")
+                HideShowRows(7);
+            if (comboBoxUserSelect.Text == "User 08")
+                HideShowRows(8); 
+            if (comboBoxUserSelect.Text == "User 09")
+                HideShowRows(9);
+            if (comboBoxUserSelect.Text == "User 10")
+                HideShowRows(10);
+            if (comboBoxUserSelect.Text == "User 11")
+                HideShowRows(11);
+            if (comboBoxUserSelect.Text == "User 12")
+                HideShowRows(12); 
+        }
+
+        void HideShowRows(int userSlotToDisplay)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                MiBodyData bd = (MiBodyData)dataGridView1.Rows[i].Tag;
+
+                if (bd._userSlot == userSlotToDisplay)
+                    dataGridView1.Rows[i].Visible = true;
+                else
+                    dataGridView1.Rows[i].Visible = false;
+            }
         }
     }
 }

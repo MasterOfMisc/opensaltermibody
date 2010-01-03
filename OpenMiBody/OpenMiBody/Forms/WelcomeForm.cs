@@ -20,5 +20,10 @@ namespace OpenMiBody.Forms
         {
             DialogResult = DialogResult.OK;
         }
+
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
