@@ -201,5 +201,13 @@ namespace OpenMiBody
                     dataGridView1.Rows[i].Visible = false;
             }
         }
+
+        private void buttonUnits_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Todo"); 
+
+            UnitsForm dlg = new UnitsForm();
+            dlg.ShowDialog();
+        }
     }
 }

@@ -49,6 +49,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonUnits = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -232,11 +233,22 @@
             this.button1.Text = "Total Weight Lost";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // buttonUnits
+            // 
+            this.buttonUnits.Location = new System.Drawing.Point(510, 13);
+            this.buttonUnits.Name = "buttonUnits";
+            this.buttonUnits.Size = new System.Drawing.Size(75, 23);
+            this.buttonUnits.TabIndex = 10;
+            this.buttonUnits.Text = "Units";
+            this.buttonUnits.UseVisualStyleBackColor = true;
+            this.buttonUnits.Click += new System.EventHandler(this.buttonUnits_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 354);
+            this.Controls.Add(this.buttonUnits);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
@@ -281,6 +293,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonUnits;
     }
 }
 
