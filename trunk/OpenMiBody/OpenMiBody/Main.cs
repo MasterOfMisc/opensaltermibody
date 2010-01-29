@@ -23,73 +23,12 @@ namespace OpenMiBody
 
         private void buttonReadFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dlgOpen = new OpenFileDialog();
-            if (dlgOpen.ShowDialog() == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            List<byte> fileContents = new List<byte>();
-            int pos = 0;
-            string FilePath = dlgOpen.FileName;
-            fileContents.Clear();
-            if (FilePath != "")
-            {
-                try
-                {
-                    using (BinaryReader b = new BinaryReader(File.Open(FilePath, FileMode.Open)))
-                    {
-                        int length = (int)b.BaseStream.Length;
-                        while (pos < length)
-                        {
-                            fileContents.Add(b.ReadByte());
-                            pos++;
-                        }
-                        b.Close();
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("error");
-                }
-            }
-            
-            // There are 12 users in the system. Each user has a maximum of 35 slots. Each slot contains the data.
-            // This data is made up of 18 bytes. Read each of them in to MiBodyData class.
-
-            int nFileContentsCounter = 0;
-            int nNumUsers = 12;
-            for (int nUserCount = 0; nUserCount < nNumUsers; nUserCount++)
-            {
-                MiBodyUser user = new MiBodyUser();
-                user._userSlot = nUserCount + 1;
-
-                int nNumSlotsPerUser = 35;
-                for (int nSlotCount = 0; nSlotCount < nNumSlotsPerUser; nSlotCount++)
-                {
-                    MiBodyData bodyData = new MiBodyData();
-
-                    int nNumBytesInData = 18;
-                    for (int nByteCount = 0; nByteCount < nNumBytesInData; nByteCount++)
-                    {
-                        bodyData._rawData.Add( fileContents[nFileContentsCounter++] );
-                    }
-
-                    user.miBodyDataList.Add(bodyData);
-                }
-
-                _miBodySystem.miBodyUserList.Add(user);
-            }
-
-            MessageBox.Show("Successfully Finished Reading in file data!");
-
-            _miBodySystem.FillInUserData();
-
-            PopulateGrid();
         }
 
         void PopulateGrid()
         {
+            dataGridView1.Rows.Clear();
+
             foreach (MiBodyUser user in _miBodySystem.miBodyUserList)
             {
                 foreach (MiBodyData bd in user.miBodyDataList)
@@ -137,7 +76,18 @@ namespace OpenMiBody
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "Open MiBody V0.03 (BETA)";
             SetupDataGridView(ref dataGridView1);
+
+            try
+            {
+                _miBodySystem = (MiBodySystem)MiBodySystemSerialization.ReadXMLFileToObject("MiBodyUserData.xml");
+            }
+            catch (Exception ex)
+            {
+            }
+
+            PopulateGrid();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -204,10 +154,168 @@ namespace OpenMiBody
 
         private void buttonUnits_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Todo"); 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonReadUSBFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlgOpen = new OpenFileDialog();
+            if (dlgOpen.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            List<byte> fileContents = new List<byte>();
+            int pos = 0;
+            string FilePath = dlgOpen.FileName;
+            fileContents.Clear();
+            if (FilePath != "")
+            {
+                try
+                {
+                    using (BinaryReader b = new BinaryReader(File.Open(FilePath, FileMode.Open)))
+                    {
+                        int length = (int)b.BaseStream.Length;
+                        while (pos < length)
+                        {
+                            fileContents.Add(b.ReadByte());
+                            pos++;
+                        }
+                        b.Close();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("error");
+                }
+            }
+
+            // There are 12 users in the system. Each user has a maximum of 35 slots. Each slot contains the data.
+            // This data is made up of 18 bytes. Read each of them in to MiBodyData class.
+
+            int nFileContentsCounter = 0;
+            int nNumUsers = 12;
+            for (int nUserCount = 0; nUserCount < nNumUsers; nUserCount++)
+            {
+                MiBodyUser user = _miBodySystem.GetUser(nUserCount + 1);
+                user._userSlot = nUserCount + 1;
+
+                int nNumSlotsPerUser = 35;
+                for (int nSlotCount = 0; nSlotCount < nNumSlotsPerUser; nSlotCount++)
+                {
+                    MiBodyData bodyData = new MiBodyData();
+
+                    int nNumBytesInData = 18;
+                    for (int nByteCount = 0; nByteCount < nNumBytesInData; nByteCount++)
+                    {
+                        bodyData._rawData.Add(fileContents[nFileContentsCounter++]);
+                    }
+
+                    if (IsRawDataValid(bodyData) == true)
+                    {
+                        // Calc Date/Time from raw data. If this already exists then omit it from readings!
+                        DateTime dt = _miBodySystem.DecodeDateTimeFromRawData(bodyData);
+                        if ( _miBodySystem.CheckDateTimeExists(dt, user) == false )
+                            user.miBodyDataList.Add(bodyData);
+                    }
+                }
+
+                _miBodySystem.AddUser(user);
+            }
+
+            MessageBox.Show("Successfully Finished Reading in file data!");
+
+            _miBodySystem.FillInUserData();
+
+            PopulateGrid();
+        }
+
+
+        private bool IsRawDataValid(MiBodyData bd)
+        {
+            int nonZeroCount = 0;
+            foreach (byte b in bd._rawData)
+            {
+                if (b != 0)
+                    nonZeroCount++;
+            }
+
+            if (nonZeroCount < 5)
+                return false;
+            else
+                return true;
+            
+            //return Convert.ToBoolean(nonZeroCount);
+        }
+
+        private void toolStripButtonAddUser_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Add New User Wizard here! Enter target weight, etc");
+        }
+
+        private void toolStripButtonGraphProgress_Click(object sender, EventArgs e)
+        {
+            ChartForm form = new ChartForm();
+            form.ShowDialog();
+
+            //MessageBox.Show("Dissplay graph of user progress here!");
+        }
+
+        private void toolStripButtonChangeUnits_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Change Units Here");
 
             UnitsForm dlg = new UnitsForm();
             dlg.ShowDialog();
+        }
+
+        private void toolStripButtonTargetWeight_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Display User Target Statistics here!");
+        }
+
+        private void toolStripButtonWeightCalc_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Display Weight Calculations here!");
+        }
+
+        private void toolStripButtonExport_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Export To Excel!");
+        }
+
+        private void toolStripButtonSettings_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Application Settings");
+        }
+
+        private void toolStripButtonAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Free Icons from www.dryicons.com");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MiBodySystemSerialization.WriteObjectToXMLFile(_miBodySystem, "MiBodyUserData.xml");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

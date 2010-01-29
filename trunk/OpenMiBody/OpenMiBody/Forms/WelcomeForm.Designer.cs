@@ -61,6 +61,7 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.label1);
             this.Name = "WelcomeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "WelcomeForm";
             this.Load += new System.EventHandler(this.WelcomeForm_Load);
             this.ResumeLayout(false);

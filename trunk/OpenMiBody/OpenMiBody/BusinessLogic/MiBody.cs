@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
 
 namespace OpenMiBody.BusinessLogic
 {
@@ -46,12 +49,156 @@ namespace OpenMiBody.BusinessLogic
         public List<MiBodyData> miBodyDataList = new List<MiBodyData>();
     }
 
+
+    class MiBodySystemSerialization
+    {
+        /// <summary>
+        /// To convert a Byte Array of Unicode values (UTF-8 encoded) to a complete String.
+        /// </summary>
+        /// <param name="characters">Unicode Byte Array to be converted to String</param>
+        /// <returns>String converted from Unicode Byte Array</returns>
+        static private String UTF8ByteArrayToString(Byte[] characters)
+        {
+            UTF8Encoding encoding = new UTF8Encoding();
+            String constructedString = encoding.GetString(characters);
+            return (constructedString);
+        }
+
+        static private String ASCIIByteArrayToString(Byte[] characters)
+        {
+            //UTF8Encoding encoding = new UTF8Encoding();
+            //UnicodeEncoding encoding = new UnicodeEncoding();  
+
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            String constructedString = encoding.GetString(characters);
+            return (constructedString);
+        }
+
+        /// <summary>
+        /// Converts the String to UTF8 Byte array and is used in De serialization
+        /// </summary>
+        /// <param name="pXmlString"></param>
+        /// <returns></returns>
+        static private Byte[] StringToUTF8ByteArray(String pXmlString)
+        {
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] byteArray = encoding.GetBytes(pXmlString);
+            return byteArray;
+        }
+
+
+        static public void WriteObjectToXMLFile(Object pObject, string fileName)
+        {
+            string xmlString = SerializeObject(pObject);
+
+            if (xmlString == null)
+                return;
+
+            // Now write this string out to the file
+            FileInfo file = new FileInfo(fileName);
+            using (StreamWriter text = file.CreateText())
+            {
+                text.Write(xmlString);
+            }
+        }
+
+        static public string WriteObjectToXMLString(Object pObject)
+        {
+            return SerializeObject(pObject);
+        }
+
+        static public string ReadXMLFileIntoString(string inputFileName)
+        {
+            StringBuilder fileContents = new StringBuilder();
+            using (StreamReader re = File.OpenText(inputFileName))
+            {
+                string line = null;
+                while ((line = re.ReadLine()) != null)
+                {
+                    fileContents.Append(line);
+                }
+            }
+
+            return fileContents.ToString();
+        }
+
+        static public object ReadXMLFileToObject(string inputFileName)
+        {
+            StringBuilder fileContents = new StringBuilder();
+            using (StreamReader re = File.OpenText(inputFileName))
+            {
+                string line = null;
+                while ((line = re.ReadLine()) != null)
+                {
+                    fileContents.Append(line);
+                }
+            }
+
+            return DeserializeObject(fileContents.ToString());
+        }
+
+        static public object ReadXMLStringToObject(string inputFileName)
+        {
+            return DeserializeObject(inputFileName);
+        }
+
+
+
+        /// <summary>
+        /// Method to convert a custom Object to XML string
+        /// </summary>
+        /// <param name="pObject">Object that is to be serialized to XML</param>
+        /// <returns>XML string</returns>
+        static public String SerializeObject(Object pObject)
+        {
+            try
+            {
+                String XmlizedString = null;
+                MemoryStream memoryStream = new MemoryStream();
+                XmlSerializer xs = new XmlSerializer(typeof(MiBodySystem));
+                //XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8);
+                XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.ASCII);
+
+                xs.Serialize(xmlTextWriter, pObject);
+                memoryStream = (MemoryStream)xmlTextWriter.BaseStream;
+                //XmlizedString = UTF8ByteArrayToString(memoryStream.ToArray());
+                XmlizedString = ASCIIByteArrayToString(memoryStream.ToArray());
+                return XmlizedString;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Method to reconstruct an Object from XML string
+        /// </summary>
+        /// <param name="pXmlizedString"></param>
+        /// <returns></returns>
+        static public Object DeserializeObject(String pXmlizedString)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(MiBodySystem));
+            MemoryStream memoryStream = new MemoryStream(StringToUTF8ByteArray(pXmlizedString));
+            XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8);
+
+            return xs.Deserialize(memoryStream);
+        }
+
+
+    }
+
     // This is the daddy class! - Has a list of users which contain there own data! Nice.
+    [XmlRoot(ElementName = "MiBodyUserData", IsNullable = false)]
+    [Serializable]
     public class MiBodySystem
     {
+//        public Dictionary<DateTime, MiBodyUser> miBodyUserList = new Dictionary<DateTime, MiBodyUser>();
+
         public List<MiBodyUser> miBodyUserList = new List<MiBodyUser>();
 
-        public double CalculateBMI(MiBodyData bd)
+        internal double CalculateBMI(MiBodyData bd)
         {
             // convert height from cm to metres
             double heightInMetres = bd._heightInCM * 0.01;
@@ -68,7 +215,7 @@ namespace OpenMiBody.BusinessLogic
             // http://www.bbc.co.uk/health/healthy_living/your_weight/bmiimperial_index.shtml
         }
 
-        public double CalculateBMR(MiBodyData bd)
+        internal double CalculateBMR(MiBodyData bd)
         {
             // calc taken from here: 
             // http://www.bmi-calculator.net/bmr-calculator/bmr-formula.php
@@ -87,7 +234,66 @@ namespace OpenMiBody.BusinessLogic
 
             return BMR;
         }
-        public void FillInUserData()
+
+        internal MiBodyUser GetUser(int nUserNum)
+        {
+            foreach (MiBodyUser user in miBodyUserList)
+            {
+                if ( user._userSlot == nUserNum)
+                    return user;
+            }
+
+            // Looks like this user was not found! Lets create a new user and pass it back!
+            MiBodyUser newUser = new MiBodyUser();
+            return newUser;
+        }
+
+        internal void AddUser(MiBodyUser newUser)
+        {
+            foreach (MiBodyUser user in miBodyUserList)
+            {
+                if (user._userSlot == newUser._userSlot)
+                    return;
+            }
+
+            // Looks like this user was not found! Lets add it to the list!
+            miBodyUserList.Add(newUser);
+        }
+
+        internal bool CheckDateTimeExists(DateTime dt, MiBodyUser user)
+        {
+            foreach (MiBodyData data in user.miBodyDataList)
+            {
+                if ( data._dateTime == dt)
+                    return true;
+            }
+
+            return false;
+        }
+
+        internal DateTime DecodeDateTimeFromRawData(MiBodyData bodyData)
+        {
+            // Step 01: Get Year
+            int year = bodyData._rawData[0] << 8;
+            year += bodyData._rawData[1];
+
+            // Step 02: Get Month
+            int month = bodyData._rawData[2];
+
+            // Step 03: Get Day
+            int day = bodyData._rawData[3];
+
+            // Step 04: Get Time 
+            int hour = bodyData._rawData[4];
+            int min = bodyData._rawData[5];
+            int sec = bodyData._rawData[6];
+
+            bodyData._dateTime = new DateTime(year, month, day, hour, min, sec);
+
+            return bodyData._dateTime;
+        }
+
+        internal void FillInUserData()
         {
             foreach (MiBodyUser user in miBodyUserList)
             {
