@@ -6,19 +6,21 @@
 
   * Add new user to system.
      - User Number On Scales<br>
-     - User Name
-     - Taget Weight
-     - Target Body Fat
-     - Target Muscle Mass
+     - User Name<br>
+     - Taget Weight<br>
+     - Target Body Fat<br>
+     - Target Muscle Mass<br>
 
   * Change Unit Dialog
-     - Ability to change the units data is displayed in
-     - Save the preference units is displayed in for next application load
+     - Ability to change the units data is displayed in<br>
+     - Save the preference units is displayed in for next application load<br>
 
   * Target Weight statsistics
-     - Apparently the guide is to lose a pound per week. 
-     - Show graph over time axis that shows when you should reach your target weight
+     - Apparently the guide is to lose a pound per week. <br>
+     - Show graph over time axis that shows when you should reach your target weight<br>
 
   * Export Readings to Excel
 
   * Import Data from official MiBody MDB Database to application.
+
+  * Anything else that could be cool!
