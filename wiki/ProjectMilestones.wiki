@@ -3,4 +3,22 @@
   * Work out how weight data is held on the usb stick (done)
   * Download & Install Microsoft Visual Studio Express 2008
   * Write test application to import data into!
-  * Make cup of tea!
+
+  * Add new user to system.
+     - User Number On Scales
+     - User Name
+     - Taget Weight
+     - Target Body Fat
+     - Target Muscle Mass
+
+  * Change Unit Dialog
+     - Ability to change the units data is displayed in
+     - Save the preference units is displayed in for next application load
+
+  * Target Weight statsistics
+     - Apparently the guide is to lose a pound per week. 
+     - Show graph over time axis that shows when you should reach your target weight
+
+  * Export Readings to Excel
+
+  * Import Data from official MiBody MDB Database to application.
