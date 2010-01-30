@@ -40,7 +40,7 @@ Example User Data String = 07 da 01 01 08 31 2c a1 b9 00 03 5a 00 dc 00 01 9d 09
 ||2c ||	44 ||	TIME<br>||
 ||a1 ||	161 ||    Female/Male Setting & Age. 1st bit = male/female. If 0 then female, if 1 then male. Can only live upto 127<br>||
 ||b9 ||	185 ||	Height in cm <br>||
-||00 ||	0 ||	PADDING! - It seems like!<br>||
+||00 ||	0 ||	Fitness Level (thanks Peter)<br>||
 ||03 ||	3 ||	WEIGHT The MSB is not used.<br>||
 ||5a ||	90  ||    WEIGHT <br>||
 ||00 ||	0 ||	BODY FAT<br>||
