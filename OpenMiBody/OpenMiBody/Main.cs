@@ -259,10 +259,15 @@ namespace OpenMiBody
 
         private void toolStripButtonGraphProgress_Click(object sender, EventArgs e)
         {
-            ChartForm form = new ChartForm();
-            form.ShowDialog();
+            int val = comboBoxUserSelect.SelectedIndex - 1;
+            if (val > 0)
+            {
+                MiBodyUser user = _miBodySystem.miBodyUserList[val];
 
-            //MessageBox.Show("Dissplay graph of user progress here!");
+                Charts chart = new Charts(user);
+                chart.Show();
+            }
+
         }
 
         private void toolStripButtonChangeUnits_Click(object sender, EventArgs e)
