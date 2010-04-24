@@ -33,6 +33,8 @@ namespace OpenMiBody
             {
                 foreach (MiBodyData bd in user.miBodyDataList)
                 {
+                    _miBodySystem.CalculateBodyData(bd);
+
                     if (bd._valid == false)
                         continue;
 
