@@ -117,7 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>This proof of concept application displays reading from the Salter MiBody USB scales. A couple of things to know. Firstly, the MiBody software deletes the contents of the BODYDATA.TXT file once it has read in the data. I dont know why it does this, but it means that if you want to import the data into this application you must do it first before entering it into the official MiBody software.  Secondly, the readings BMR, BMI &amp; Body Water are not recorded onto the USB pen. These are calculated by the windows software. I have used the standard calculation for the BMR and am investigating BMI but do not know how to calculate the Body Water %.  This project is completly open source so if anyone wants to contribute then please do not hesitate to 'chip' in. There are lots of neat things that could be done with this application using better graphs, statistics, exporting to excel, etc, etc.</value>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>This proof of concept application displays reading from the Salter MiBody USB scales. 
+
+Important: 
+
+Firstly, the MiBody software deletes the contents of the BODYDATA.TXT file once it has read in the data from the USB pen stick. I dont know why it does this, but it means that if you want to import the data into this application you must do it first before entering it into the official MiBody software. 
+
+One of the goals of the project is to be able to export the data you have already saved from the access database the original software uses.  
+
+Project TODO List:
+
+* Allow user to save weight data to external file of thier choice.
+
+* Add User Weight Properties. eg: target weight, etc.
+
+* Change units of weight data (Kg to Stones, etc)
+
+* Import data from original Salrter MiBody Application (Access database)
+
+* Export data to excel file
+
+* Any other user requests 
+
+This project is completly open source so if anyone wants to contribute then please do not hesitate to 'chip' in. There are lots of neat things that could be done with this application using better graphs, statistics, exporting to excel, etc, etc.</value>
   </data>
 </root>
