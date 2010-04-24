@@ -11,6 +11,10 @@ namespace OpenMiBody.BusinessLogic
 {
     public enum Gender { Male, Female };
 
+    public enum Weight { Kilogrames, PoundsLB, Stone }
+
+    public enum HeightMeasure { Centimetres, Inches }
+    
     public class MiBodyData
     {
         public bool _valid = false;
@@ -411,11 +415,21 @@ namespace OpenMiBody.BusinessLogic
     {
         public static double ConvertWeightKGToPounds( double value )
         {
-            return value * 2.20462262;
+            return value * 2.2;
         }
 
-        public static string ConvertWeightKGToStonePounds(double value)
+        public static string ConvertWeightKGToStonePounds(double kgWeight)
         {
+            double returnVal = (2.2046 * kgWeight / 14);
+
+
+            int stone = Convert.ToInt32(kgWeight * 0.157473044418);
+            double pounds = kgWeight * 0.157473044418 - (int)(kgWeight*0.157473044418)*14;
+
+
+            return string.Format("{0} Stone {1} Pound(s)", stone, Math.Round(pounds,0));
+
+            //=INT(A3*0.157473044418)&" Stones "&ROUND((A3*0.157473044418-INT(A3*0.157473044418))*14,0)&"lbs"
             // http://msdn.microsoft.com/en-us/library/yda5c8dx.aspx
             int remainder;
             //int quotient = Math.DivRem(Convert.ToInt32(value), 0.157473044, out remainder);
