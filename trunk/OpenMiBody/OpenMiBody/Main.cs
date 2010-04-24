@@ -261,19 +261,24 @@ namespace OpenMiBody
 
         private void toolStripButtonGraphProgress_Click(object sender, EventArgs e)
         {
-            int val = comboBoxUserSelect.SelectedIndex - 1;
-            if (val >= 0)
+            try
             {
-                MiBodyUser user = _miBodySystem.miBodyUserList[val];
+                int val = comboBoxUserSelect.SelectedIndex - 1;
+                if (val >= 0)
+                {
+                    MiBodyUser user = _miBodySystem.miBodyUserList[val];
 
-                Charts chart = new Charts(user);
-                chart.Show();
+                    Charts chart = new Charts(user);
+                    chart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid user from the drop down box");
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Please select a valid user from the drop down box");
             }
-
         }
 
         private void toolStripButtonChangeUnits_Click(object sender, EventArgs e)
