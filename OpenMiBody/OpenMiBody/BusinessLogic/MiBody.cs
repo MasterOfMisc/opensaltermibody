@@ -198,6 +198,22 @@ namespace OpenMiBody.BusinessLogic
 
         public List<MiBodyUser> miBodyUserList = new List<MiBodyUser>();
 
+
+        internal double CalculateBodyWaterPerc(MiBodyData bd)
+        {
+            double muscleMass = bd._muscleMass * bd._weightInKG / 100;
+
+            double fatMass = bd._bodyFat * bd._weightInKG / 100;
+
+            double restOfFluids = bd._weightInKG - muscleMass - fatMass;
+
+            double waterMass = muscleMass * 0.83 + restOfFluids * 0.62;
+
+            double waterPerc = waterMass / bd._weightInKG * 100;
+
+            return Math.Round(waterPerc, 1);
+        }
+
         internal double CalculateBMI(MiBodyData bd)
         {
             // convert height from cm to metres
@@ -293,6 +309,90 @@ namespace OpenMiBody.BusinessLogic
             return bodyData._dateTime;
         }
 
+        public void CalculateBodyData(MiBodyData bodyData)
+        {
+            // Step 01: Get Year
+            int year = bodyData._rawData[0] << 8;
+            year += bodyData._rawData[1];
+
+            if (year == 0)
+                return; // There is no data here! Move along...
+
+            bodyData._valid = true;
+            // Step 02: Get Month
+            int month = bodyData._rawData[2];
+
+            // Step 03: Get Day
+            int day = bodyData._rawData[3];
+
+            // Step 04: Get Time 
+            int hour = bodyData._rawData[4];
+            int min = bodyData._rawData[5];
+            int sec = bodyData._rawData[6];
+
+            bodyData._dateTime = new DateTime(year, month, day, hour, min, sec);
+
+            // Step 05: Get Gender
+
+            // convert rawData 7 to a bit array
+            BitArray ageBits = new BitArray(BitConverter.GetBytes(bodyData._rawData[7]));
+
+            // get bit 8 (zero index so is 7!)
+            bool genderBit = ageBits.Get(7);
+
+            if (genderBit == false)
+                bodyData._gender = Gender.Female;
+            else
+                bodyData._gender = Gender.Male;
+
+            //  Set gender bit (8) to zero so we can get the age!
+            ageBits.Set(7, false);
+
+            // Step 06: Get Age
+            bodyData._age = Utilities.GetBitArrayValue(ageBits);
+
+            // Step 07: Get height
+            bodyData._heightInCM = bodyData._rawData[8];
+
+            // Step 08: Get weight
+            int tmp1 = bodyData._rawData[10];
+            int tmp2 = bodyData._rawData[11];
+            int result = tmp1 << 8;
+            result += tmp2;
+            bodyData._weightInKGStr = result.ToString();
+            bodyData._weightInKGStr = bodyData._weightInKGStr.Insert(bodyData._weightInKGStr.Length - 1, ".");
+            bodyData._weightInKG = Convert.ToDouble(bodyData._weightInKGStr);
+
+            // Step 9: Get body fat
+            tmp1 = bodyData._rawData[12];
+            tmp2 = bodyData._rawData[13];
+            result = tmp1 << 8;
+            result += tmp2;
+            bodyData._bodyFatStr = result.ToString();
+            bodyData._bodyFatStr = bodyData._bodyFatStr.Insert(bodyData._bodyFatStr.Length - 1, ".");
+            bodyData._bodyFat = Convert.ToDouble(bodyData._bodyFatStr);
+
+            // Step 10: Get Muscle Mass
+            tmp1 = bodyData._rawData[15];
+            tmp2 = bodyData._rawData[16];
+            result = tmp1 << 8;
+            result += tmp2;
+            bodyData._muscleMassStr = result.ToString();
+            bodyData._muscleMassStr = bodyData._muscleMassStr.Insert(bodyData._muscleMassStr.Length - 1, ".");
+            bodyData._muscleMass = Convert.ToDouble(bodyData._muscleMassStr);
+
+            // Step 11: Get Visceral Fat
+            bodyData._visceralFat = bodyData._rawData[17];
+
+            // Step 12: Calc BMR
+            bodyData._bmr = CalculateBMR(bodyData);
+
+            // Step 13: Calc BMI
+            bodyData._bmi = CalculateBMI(bodyData);
+
+            bodyData._bodyWater = CalculateBodyWaterPerc(bodyData);
+        }
+
         internal void FillInUserData()
         {
             foreach (MiBodyUser user in miBodyUserList)
@@ -301,84 +401,7 @@ namespace OpenMiBody.BusinessLogic
                 {
                     bodyData._userSlot = user._userSlot;
 
-                    // Step 01: Get Year
-                    int year = bodyData._rawData[0] << 8;
-                    year += bodyData._rawData[1];
-
-                    if (year == 0)
-                        continue; // There is no data here! Move along...
-
-                    bodyData._valid = true;
-                    // Step 02: Get Month
-                    int month = bodyData._rawData[2];
-
-                    // Step 03: Get Day
-                    int day = bodyData._rawData[3];
-
-                    // Step 04: Get Time 
-                    int hour = bodyData._rawData[4];
-                    int min = bodyData._rawData[5];
-                    int sec = bodyData._rawData[6];
-
-                    bodyData._dateTime = new DateTime(year, month, day, hour, min, sec);
-
-                    // Step 05: Get Gender
-
-                    // convert rawData 7 to a bit array
-                    BitArray ageBits = new BitArray(BitConverter.GetBytes(bodyData._rawData[7]));
-
-                    // get bit 8 (zero index so is 7!)
-                    bool genderBit = ageBits.Get(7);
-
-                    if (genderBit == false)
-                        bodyData._gender = Gender.Female;
-                    else
-                        bodyData._gender = Gender.Male;
-
-                    //  Set gender bit (8) to zero so we can get the age!
-                    ageBits.Set(7, false);
-
-                    // Step 06: Get Age
-                    bodyData._age = Utilities.GetBitArrayValue(ageBits);
-
-                    // Step 07: Get height
-                    bodyData._heightInCM = bodyData._rawData[8];
-
-                    // Step 08: Get weight
-                    int tmp1 = bodyData._rawData[10];
-                    int tmp2 = bodyData._rawData[11];
-                    int result = tmp1 << 8;
-                    result += tmp2;
-                    bodyData._weightInKGStr = result.ToString();
-                    bodyData._weightInKGStr = bodyData._weightInKGStr.Insert(bodyData._weightInKGStr.Length - 1, ".");
-                    bodyData._weightInKG = Convert.ToDouble(bodyData._weightInKGStr);
-
-                    // Step 9: Get body fat
-                    tmp1 = bodyData._rawData[12];
-                    tmp2 = bodyData._rawData[13];
-                    result = tmp1 << 8;
-                    result += tmp2;
-                    bodyData._bodyFatStr = result.ToString();
-                    bodyData._bodyFatStr = bodyData._bodyFatStr.Insert(bodyData._bodyFatStr.Length - 1, ".");
-                    bodyData._bodyFat = Convert.ToDouble(bodyData._bodyFatStr);
-
-                    // Step 10: Get Muscle Mass
-                    tmp1 = bodyData._rawData[15];
-                    tmp2 = bodyData._rawData[16];
-                    result = tmp1 << 8;
-                    result += tmp2;
-                    bodyData._muscleMassStr = result.ToString();
-                    bodyData._muscleMassStr = bodyData._muscleMassStr.Insert(bodyData._muscleMassStr.Length - 1, ".");
-                    bodyData._muscleMass = Convert.ToDouble(bodyData._muscleMassStr);
-
-                    // Step 11: Get Visceral Fat
-                    bodyData._visceralFat = bodyData._rawData[17];
-
-                    // Step 12: Calc BMR
-                    bodyData._bmr = CalculateBMR(bodyData);
-
-                    // Step 13: Calc BMI
-                    bodyData._bmi = CalculateBMI(bodyData);
+                    CalculateBodyData(bodyData);
                 }
             }
         }
