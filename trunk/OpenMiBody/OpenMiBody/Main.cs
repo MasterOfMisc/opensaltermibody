@@ -281,12 +281,52 @@ namespace OpenMiBody
             }
         }
 
+        string GetWeightValue(Weight weight, MiBodyData bd)
+        {
+            string weightStr = "";
+
+            if (weight == Weight.PoundsLB)
+            {
+                weightStr = Utilities.ConvertWeightKGToPounds(bd._weightInKG).ToString();
+                weightStr += " LB";
+            }
+            if (weight == Weight.Kilogrames)
+            {
+                weightStr = bd._weightInKG.ToString() + " Kg";
+            }
+            if (weight == Weight.Stone)
+            {
+                weightStr = Utilities.ConvertWeightKGToStonePounds(bd._weightInKG).ToString();
+                weightStr += " Stone";
+            }
+
+            return weightStr;
+        }
+
         private void toolStripButtonChangeUnits_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Change Units Here");
-
             UnitsForm dlg = new UnitsForm();
-            dlg.ShowDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                // loop around all rows and get body data and convert height / weight.
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    MiBodyData bd = (MiBodyData)dataGridView1.Rows[i].Tag;
+
+                    string userWeight = GetWeightValue(dlg._weight, bd);
+
+                    dataGridView1.Rows[i].Cells[4].Value = userWeight;
+
+                    if ( dlg._height == HeightMeasure.Centimetres )
+                    {
+                    }
+
+                    if ( dlg._height == HeightMeasure.Centimetres )
+                    {
+                    }
+                    
+                }
+            }
         }
 
         private void toolStripButtonTargetWeight_Click(object sender, EventArgs e)

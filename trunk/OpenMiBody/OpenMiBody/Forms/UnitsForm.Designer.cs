@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxWeight = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxHeight = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBoxWeight
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxWeight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxWeight.FormattingEnabled = true;
+            this.comboBoxWeight.Items.AddRange(new object[] {
             "Kilogrames (Kg)",
             "Pounds (LB)",
             "Stone (ST)"});
-            this.comboBox1.Location = new System.Drawing.Point(170, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(181, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxWeight.Location = new System.Drawing.Point(170, 43);
+            this.comboBoxWeight.Name = "comboBoxWeight";
+            this.comboBoxWeight.Size = new System.Drawing.Size(181, 24);
+            this.comboBoxWeight.TabIndex = 1;
+            this.comboBoxWeight.SelectedIndexChanged += new System.EventHandler(this.comboBoxWeight_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -67,17 +68,18 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Height";
             // 
-            // comboBox2
+            // comboBoxHeight
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBoxHeight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHeight.FormattingEnabled = true;
+            this.comboBoxHeight.Items.AddRange(new object[] {
             "Centimetre (cm)",
             "Inches"});
-            this.comboBox2.Location = new System.Drawing.Point(170, 91);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(181, 24);
-            this.comboBox2.TabIndex = 3;
+            this.comboBoxHeight.Location = new System.Drawing.Point(170, 91);
+            this.comboBoxHeight.Name = "comboBoxHeight";
+            this.comboBoxHeight.Size = new System.Drawing.Size(181, 24);
+            this.comboBoxHeight.TabIndex = 3;
+            this.comboBoxHeight.SelectedIndexChanged += new System.EventHandler(this.comboBoxHeight_SelectedIndexChanged);
             // 
             // buttonCancel
             // 
@@ -107,12 +109,13 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBoxHeight);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxWeight);
             this.Name = "UnitsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UnitsForm";
+            this.Load += new System.EventHandler(this.UnitsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,10 +123,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxWeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxHeight;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
     }
