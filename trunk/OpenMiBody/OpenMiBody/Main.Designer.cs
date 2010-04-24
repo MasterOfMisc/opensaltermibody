@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColumnUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,9 +58,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
+            this.gradientPanel1 = new ECPApp.GradientPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.gradientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -80,10 +83,10 @@
             this.ColumnBMR,
             this.ColumnMuscleMass,
             this.ColumnBodyWater});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 95);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 57);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(996, 327);
+            this.dataGridView1.Size = new System.Drawing.Size(1041, 288);
             this.dataGridView1.TabIndex = 5;
             // 
             // ColumnUser
@@ -160,7 +163,7 @@
             "User 10",
             "User 11",
             "User 12"});
-            this.comboBoxUserSelect.Location = new System.Drawing.Point(855, 65);
+            this.comboBoxUserSelect.Location = new System.Drawing.Point(897, 17);
             this.comboBoxUserSelect.Name = "comboBoxUserSelect";
             this.comboBoxUserSelect.Size = new System.Drawing.Size(153, 24);
             this.comboBoxUserSelect.TabIndex = 6;
@@ -170,7 +173,8 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(768, 68);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(810, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 17);
             this.label1.TabIndex = 7;
@@ -182,7 +186,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 425);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1020, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1065, 25);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -209,8 +213,7 @@
             this.toolStripButtonSettings});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1020, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(1065, 55);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -329,16 +332,29 @@
             this.toolStripButtonSettings.Text = "toolStripButtonSettings";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
             // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gradientPanel1.BackgroundImage")));
+            this.gradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gradientPanel1.Controls.Add(this.dataGridView1);
+            this.gradientPanel1.Controls.Add(this.comboBoxUserSelect);
+            this.gradientPanel1.Controls.Add(this.label1);
+            this.gradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gradientPanel1.Location = new System.Drawing.Point(0, 55);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.PageEndColor = System.Drawing.Color.Empty;
+            this.gradientPanel1.PageStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(185)))), ((int)(((byte)(212)))));
+            this.gradientPanel1.Size = new System.Drawing.Size(1065, 370);
+            this.gradientPanel1.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 450);
+            this.ClientSize = new System.Drawing.Size(1065, 450);
+            this.Controls.Add(this.gradientPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBoxUserSelect);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Open MiBody!";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -351,6 +367,8 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.gradientPanel1.ResumeLayout(false);
+            this.gradientPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,6 +405,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButtonTargetWeight;
         private System.Windows.Forms.ToolStripButton toolStripButtonExport;
+        private ECPApp.GradientPanel gradientPanel1;
     }
 }
 
