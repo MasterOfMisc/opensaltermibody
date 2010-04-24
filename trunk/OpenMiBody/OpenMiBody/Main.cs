@@ -78,7 +78,7 @@ namespace OpenMiBody
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Open MiBody V0.03 (BETA)";
+            Text = "Open MiBody V0.04 (BETA) - Now with Graphs!";
             SetupDataGridView(ref dataGridView1);
 
             try
@@ -262,12 +262,16 @@ namespace OpenMiBody
         private void toolStripButtonGraphProgress_Click(object sender, EventArgs e)
         {
             int val = comboBoxUserSelect.SelectedIndex - 1;
-            if (val > 0)
+            if (val >= 0)
             {
                 MiBodyUser user = _miBodySystem.miBodyUserList[val];
 
                 Charts chart = new Charts(user);
                 chart.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a valid user from the drop down box");
             }
 
         }
