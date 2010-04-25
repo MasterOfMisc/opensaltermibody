@@ -310,6 +310,24 @@ namespace OpenMiBody
             return weightStr;
         }
 
+        string GetHeightValue(HeightMeasure height, MiBodyData bd)
+        {
+            string heightStr = "";
+
+            if (height == HeightMeasure.Centimetres)
+            {
+                heightStr = bd._heightInCM.ToString();
+                heightStr += " CM";
+            }
+            if (height == HeightMeasure.Inches)
+            {
+                heightStr = Utilities.ConvertCMToInches(bd._heightInCM).ToString();
+                heightStr += " Inches";
+            }
+ 
+            return heightStr;
+        }
+
         private void toolStripButtonChangeUnits_Click(object sender, EventArgs e)
         {
             UnitsForm dlg = new UnitsForm();
@@ -322,15 +340,11 @@ namespace OpenMiBody
 
                     string userWeight = GetWeightValue(dlg._weight, bd);
 
+                    string height = GetHeightValue(dlg._height, bd);
+
                     dataGridView1.Rows[i].Cells[4].Value = userWeight;
 
-                    if ( dlg._height == HeightMeasure.Centimetres )
-                    {
-                    }
-
-                    if ( dlg._height == HeightMeasure.Centimetres )
-                    {
-                    }
+                    dataGridView1.Rows[i].Cells[3].Value = height;
                     
                 }
             }

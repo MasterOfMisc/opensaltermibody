@@ -412,6 +412,15 @@ namespace OpenMiBody.BusinessLogic
 
     public class Utilities
     {
+        public static double ConvertCMToInches(double value)
+        {
+            double cm = 0.393700787;
+            double total;
+            total = (value * cm); // Perform Calculation
+
+            return Math.Round(total, 2);
+        }
+
         public static double ConvertWeightKGToPounds( double value )
         {
             return value * 2.2;
