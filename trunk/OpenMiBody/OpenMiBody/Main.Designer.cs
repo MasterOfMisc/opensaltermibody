@@ -29,20 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnBodyFat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnVisceralFat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnBMI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnBMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMuscleMass = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnBodyWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxUserSelect = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -59,126 +45,25 @@
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.gradientPanel1 = new ECPApp.GradientPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBodyFat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnVisceralFat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBMI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMuscleMass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBodyWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxUserSelect = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnUser,
-            this.ColumnDateTime,
-            this.ColumnAge,
-            this.ColumnHeight,
-            this.ColumnWeight,
-            this.ColumnBodyFat,
-            this.ColumnVisceralFat,
-            this.ColumnBMI,
-            this.ColumnBMR,
-            this.ColumnMuscleMass,
-            this.ColumnBodyWater});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 57);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1041, 288);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // ColumnUser
-            // 
-            this.ColumnUser.HeaderText = "User";
-            this.ColumnUser.Name = "ColumnUser";
-            // 
-            // ColumnDateTime
-            // 
-            this.ColumnDateTime.HeaderText = "Date/Time";
-            this.ColumnDateTime.Name = "ColumnDateTime";
-            // 
-            // ColumnAge
-            // 
-            this.ColumnAge.HeaderText = "Age";
-            this.ColumnAge.Name = "ColumnAge";
-            // 
-            // ColumnHeight
-            // 
-            this.ColumnHeight.HeaderText = "Height";
-            this.ColumnHeight.Name = "ColumnHeight";
-            // 
-            // ColumnWeight
-            // 
-            this.ColumnWeight.HeaderText = "Weight";
-            this.ColumnWeight.Name = "ColumnWeight";
-            // 
-            // ColumnBodyFat
-            // 
-            this.ColumnBodyFat.HeaderText = "Body Fat";
-            this.ColumnBodyFat.Name = "ColumnBodyFat";
-            // 
-            // ColumnVisceralFat
-            // 
-            this.ColumnVisceralFat.HeaderText = "Visceral Fat";
-            this.ColumnVisceralFat.Name = "ColumnVisceralFat";
-            // 
-            // ColumnBMI
-            // 
-            this.ColumnBMI.HeaderText = "BMI";
-            this.ColumnBMI.Name = "ColumnBMI";
-            // 
-            // ColumnBMR
-            // 
-            this.ColumnBMR.HeaderText = "BMR (Kcal)";
-            this.ColumnBMR.Name = "ColumnBMR";
-            // 
-            // ColumnMuscleMass
-            // 
-            this.ColumnMuscleMass.HeaderText = "Muscle Mass %";
-            this.ColumnMuscleMass.Name = "ColumnMuscleMass";
-            // 
-            // ColumnBodyWater
-            // 
-            this.ColumnBodyWater.HeaderText = "Body Water %";
-            this.ColumnBodyWater.Name = "ColumnBodyWater";
-            // 
-            // comboBoxUserSelect
-            // 
-            this.comboBoxUserSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxUserSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxUserSelect.FormattingEnabled = true;
-            this.comboBoxUserSelect.Items.AddRange(new object[] {
-            "All",
-            "User 01",
-            "User 02",
-            "User 03",
-            "User 04",
-            "User 05",
-            "User 06",
-            "User 07",
-            "User 08",
-            "User 09",
-            "User 10",
-            "User 11",
-            "User 12"});
-            this.comboBoxUserSelect.Location = new System.Drawing.Point(897, 17);
-            this.comboBoxUserSelect.Name = "comboBoxUserSelect";
-            this.comboBoxUserSelect.Size = new System.Drawing.Size(153, 24);
-            this.comboBoxUserSelect.TabIndex = 6;
-            this.comboBoxUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserSelect_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(810, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Select User";
             // 
             // statusStrip1
             // 
@@ -241,7 +126,8 @@
             this.toolStripButtonAddUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAddUser.Name = "toolStripButtonAddUser";
             this.toolStripButtonAddUser.Size = new System.Drawing.Size(52, 52);
-            this.toolStripButtonAddUser.Text = "Add User";
+            this.toolStripButtonAddUser.Text = "User Preferences";
+            this.toolStripButtonAddUser.Visible = false;
             this.toolStripButtonAddUser.Click += new System.EventHandler(this.toolStripButtonAddUser_Click);
             // 
             // toolStripButtonAbout
@@ -260,6 +146,7 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator2.Visible = false;
             // 
             // toolStripButtonGraphProgress
             // 
@@ -292,6 +179,7 @@
             this.toolStripButtonTargetWeight.Name = "toolStripButtonTargetWeight";
             this.toolStripButtonTargetWeight.Size = new System.Drawing.Size(52, 52);
             this.toolStripButtonTargetWeight.Text = "Target Weight";
+            this.toolStripButtonTargetWeight.Visible = false;
             this.toolStripButtonTargetWeight.Click += new System.EventHandler(this.toolStripButtonTargetWeight_Click);
             // 
             // toolStripButtonWeightCalc
@@ -303,6 +191,7 @@
             this.toolStripButtonWeightCalc.Name = "toolStripButtonWeightCalc";
             this.toolStripButtonWeightCalc.Size = new System.Drawing.Size(52, 52);
             this.toolStripButtonWeightCalc.Text = "Weight Calculator";
+            this.toolStripButtonWeightCalc.Visible = false;
             this.toolStripButtonWeightCalc.Click += new System.EventHandler(this.toolStripButtonWeightCalc_Click);
             // 
             // toolStripSeparator3
@@ -330,6 +219,7 @@
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
             this.toolStripButtonSettings.Size = new System.Drawing.Size(52, 52);
             this.toolStripButtonSettings.Text = "toolStripButtonSettings";
+            this.toolStripButtonSettings.Visible = false;
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
             // 
             // gradientPanel1
@@ -346,6 +236,133 @@
             this.gradientPanel1.PageStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(185)))), ((int)(((byte)(212)))));
             this.gradientPanel1.Size = new System.Drawing.Size(1065, 370);
             this.gradientPanel1.TabIndex = 12;
+            this.gradientPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.gradientPanel1_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnUser,
+            this.ColumnDateTime,
+            this.ColumnAge,
+            this.ColumnHeight,
+            this.ColumnWeight,
+            this.ColumnBodyFat,
+            this.ColumnVisceralFat,
+            this.ColumnBMI,
+            this.ColumnBMR,
+            this.ColumnMuscleMass,
+            this.ColumnBodyWater});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 57);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1041, 288);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // ColumnUser
+            // 
+            this.ColumnUser.HeaderText = "User";
+            this.ColumnUser.Name = "ColumnUser";
+            this.ColumnUser.ReadOnly = true;
+            // 
+            // ColumnDateTime
+            // 
+            this.ColumnDateTime.HeaderText = "Date/Time";
+            this.ColumnDateTime.Name = "ColumnDateTime";
+            this.ColumnDateTime.ReadOnly = true;
+            // 
+            // ColumnAge
+            // 
+            this.ColumnAge.HeaderText = "Age";
+            this.ColumnAge.Name = "ColumnAge";
+            this.ColumnAge.ReadOnly = true;
+            // 
+            // ColumnHeight
+            // 
+            this.ColumnHeight.HeaderText = "Height";
+            this.ColumnHeight.Name = "ColumnHeight";
+            this.ColumnHeight.ReadOnly = true;
+            // 
+            // ColumnWeight
+            // 
+            this.ColumnWeight.HeaderText = "Weight";
+            this.ColumnWeight.Name = "ColumnWeight";
+            this.ColumnWeight.ReadOnly = true;
+            // 
+            // ColumnBodyFat
+            // 
+            this.ColumnBodyFat.HeaderText = "Body Fat";
+            this.ColumnBodyFat.Name = "ColumnBodyFat";
+            this.ColumnBodyFat.ReadOnly = true;
+            // 
+            // ColumnVisceralFat
+            // 
+            this.ColumnVisceralFat.HeaderText = "Visceral Fat";
+            this.ColumnVisceralFat.Name = "ColumnVisceralFat";
+            this.ColumnVisceralFat.ReadOnly = true;
+            // 
+            // ColumnBMI
+            // 
+            this.ColumnBMI.HeaderText = "BMI";
+            this.ColumnBMI.Name = "ColumnBMI";
+            this.ColumnBMI.ReadOnly = true;
+            // 
+            // ColumnBMR
+            // 
+            this.ColumnBMR.HeaderText = "BMR (Kcal)";
+            this.ColumnBMR.Name = "ColumnBMR";
+            this.ColumnBMR.ReadOnly = true;
+            // 
+            // ColumnMuscleMass
+            // 
+            this.ColumnMuscleMass.HeaderText = "Muscle Mass %";
+            this.ColumnMuscleMass.Name = "ColumnMuscleMass";
+            this.ColumnMuscleMass.ReadOnly = true;
+            // 
+            // ColumnBodyWater
+            // 
+            this.ColumnBodyWater.HeaderText = "Body Water %";
+            this.ColumnBodyWater.Name = "ColumnBodyWater";
+            this.ColumnBodyWater.ReadOnly = true;
+            // 
+            // comboBoxUserSelect
+            // 
+            this.comboBoxUserSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxUserSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUserSelect.FormattingEnabled = true;
+            this.comboBoxUserSelect.Items.AddRange(new object[] {
+            "All",
+            "User 01",
+            "User 02",
+            "User 03",
+            "User 04",
+            "User 05",
+            "User 06",
+            "User 07",
+            "User 08",
+            "User 09",
+            "User 10",
+            "User 11",
+            "User 12"});
+            this.comboBoxUserSelect.Location = new System.Drawing.Point(897, 17);
+            this.comboBoxUserSelect.Name = "comboBoxUserSelect";
+            this.comboBoxUserSelect.Size = new System.Drawing.Size(153, 24);
+            this.comboBoxUserSelect.TabIndex = 6;
+            this.comboBoxUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserSelect_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(810, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Select User";
             // 
             // Form1
             // 
@@ -362,13 +379,13 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Leave += new System.EventHandler(this.Form1_Leave);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.gradientPanel1.ResumeLayout(false);
             this.gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,17 +394,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBodyFat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVisceralFat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBMI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBMR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMuscleMass;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBodyWater;
         private System.Windows.Forms.ComboBox comboBoxUserSelect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -406,6 +412,17 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonTargetWeight;
         private System.Windows.Forms.ToolStripButton toolStripButtonExport;
         private ECPApp.GradientPanel gradientPanel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBodyFat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVisceralFat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBMI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBMR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMuscleMass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBodyWater;
     }
 }
 

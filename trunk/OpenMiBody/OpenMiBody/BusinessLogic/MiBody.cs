@@ -15,7 +15,7 @@ namespace OpenMiBody.BusinessLogic
 
     public enum HeightMeasure { Centimetres, Inches }
     
-    public class MiBodyData
+    public class MiBodyData // Weight Reading from scales
     {
         public bool _valid = false;
         public List<byte> _rawData = new List<byte>();
@@ -41,14 +41,16 @@ namespace OpenMiBody.BusinessLogic
         public double _bmi = 0;
         public double _bmr = 0;
         public double _bodyWater = 0;
+
+        string _userComment;
     }
 
     public class MiBodyUser
     {
         public int _userSlot = -1;
-        //public DateTime _dateTime = DateTime.Now;
-        //public int _age;
-        //public int _heightInCm = 0;
+
+        public string _name;
+        public double _targetWeightInKG = 0;
 
         public List<MiBodyData> miBodyDataList = new List<MiBodyData>();
     }
@@ -198,11 +200,8 @@ namespace OpenMiBody.BusinessLogic
     [Serializable]
     public class MiBodySystem
     {
-//        public Dictionary<DateTime, MiBodyUser> miBodyUserList = new Dictionary<DateTime, MiBodyUser>();
-
         public List<MiBodyUser> miBodyUserList = new List<MiBodyUser>();
-
-
+        
         internal double CalculateBodyWaterPerc(MiBodyData bd)
         {
             double muscleMass = bd._muscleMass * bd._weightInKG / 100;
@@ -420,21 +419,25 @@ namespace OpenMiBody.BusinessLogic
 
         public static string ConvertWeightKGToStonePounds(double kgWeight)
         {
-            double returnVal = (2.2046 * kgWeight / 14);
+            // http://help.wugnet.com/office/kg-stone-convertion-excel-ftopict1052299.html
 
+            //int stone = Convert.ToInt32(2.2 * kgWeight / 14);
 
-            int stone = Convert.ToInt32(kgWeight * 0.157473044418);
-            double pounds = kgWeight * 0.157473044418 - (int)(kgWeight*0.157473044418)*14;
+            double stone = Convert.ToDouble(kgWeight * 0.157473044418);
 
+            string stoneStr = stone.ToString();
 
-            return string.Format("{0} Stone {1} Pound(s)", stone, Math.Round(pounds,0));
+            int index = stoneStr.IndexOf(".");
 
-            //=INT(A3*0.157473044418)&" Stones "&ROUND((A3*0.157473044418-INT(A3*0.157473044418))*14,0)&"lbs"
-            // http://msdn.microsoft.com/en-us/library/yda5c8dx.aspx
-            int remainder;
-            //int quotient = Math.DivRem(Convert.ToInt32(value), 0.157473044, out remainder);
+            stoneStr = stoneStr.Substring(0, index);
+            //int stone = Convert.ToInt32(kgWeight * 0.157473044418);
 
-            return "";
+                        double pounds = (kgWeight * 0.157473044418 - (int)(kgWeight*0.157473044418))*14;
+
+            pounds = Math.Round(pounds, 2);
+
+            return string.Format("{0} Stone {1} Pound(s)", stoneStr, pounds);
+
         }
         public static byte GetBitArrayValue(BitArray bArray)
         {

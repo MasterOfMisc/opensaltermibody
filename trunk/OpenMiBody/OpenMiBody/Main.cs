@@ -31,6 +31,10 @@ namespace OpenMiBody
 
             foreach (MiBodyUser user in _miBodySystem.miBodyUserList)
             {
+                // Ensure all data points are sorted in date time ascending order
+                user.miBodyDataList.Sort(delegate(MiBodyData x, MiBodyData y) { return y._dateTime.CompareTo(x._dateTime); });
+                user.miBodyDataList.Reverse();
+
                 foreach (MiBodyData bd in user.miBodyDataList)
                 {
                     _miBodySystem.CalculateBodyData(bd);
@@ -268,6 +272,10 @@ namespace OpenMiBody
                 {
                     MiBodyUser user = _miBodySystem.miBodyUserList[val];
 
+                    // Ensure all data points are sorted in date time ascending order before sending them to be graphed!
+                    user.miBodyDataList.Sort(delegate(MiBodyData x, MiBodyData y) { return y._dateTime.CompareTo(x._dateTime); });
+                    user.miBodyDataList.Reverse();
+
                     Charts chart = new Charts(user);
                     chart.Show();
                 }
@@ -297,7 +305,6 @@ namespace OpenMiBody
             if (weight == Weight.Stone)
             {
                 weightStr = Utilities.ConvertWeightKGToStonePounds(bd._weightInKG).ToString();
-                weightStr += " Stone";
             }
 
             return weightStr;
@@ -342,6 +349,16 @@ namespace OpenMiBody
         private void toolStripButtonExport_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Export To Excel!");
+            
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.InitialDirectory = @"c:\temp\";
+            fd.Filter = "CSV files (*.csv)|*.CSV";
+            fd.FilterIndex = 2;
+            fd.RestoreDirectory = true;
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+            
+            }
         }
 
         private void toolStripButtonSettings_Click(object sender, EventArgs e)
@@ -370,6 +387,11 @@ namespace OpenMiBody
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void gradientPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
