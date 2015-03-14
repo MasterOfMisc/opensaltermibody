@@ -1,0 +1,3 @@
+# Introduction #
+
+Well I have been brought a cool set of Salter MiBody Scales to help me get in shape for the new year. They are well cool (http://www.mi-body.com) and can record your body fat, Muscle Mass, Body Water, BMR, BMI etc. - The cool part is that the scales come with a USB port to download your reading and plot your progress on your PC. This all works very well but the software provided felt very 1980's.. Dont get me wrong, it works a treat but its the holidays, ive got some spare time on my hands so I thought what the hell!! Why not knock up a Windows .NET application to read my recordings into!! And in a nutshell thats what this project is all about.
